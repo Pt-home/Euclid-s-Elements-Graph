@@ -26,11 +26,11 @@
 ## Структура проекту
 
 euclid-graph/ 
-├── index.html 
-├── style.css 
-├── graph.js 
-├── Euclid's_Elements_Graph.json 
-├── README.md 
+            ├── index.html 
+            ├── style.css 
+            ├── graph.js 
+            ├── Euclid's_Elements_Graph.json 
+            ├── README.md 
 
 ## ⚙️ Як запустити локально
 
