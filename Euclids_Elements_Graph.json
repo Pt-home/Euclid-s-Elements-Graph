@@ -4176,7 +4176,7 @@
 
 	  { "from": "I.42", "to": "II.14", "type": "uses" },
 	  { "from": "II.5", "to": "II.14", "type": "uses" },
-	  { "from": "II.7", "to": "II.14", "type": "uses" }
+	  { "from": "II.7", "to": "II.14", "type": "uses" },
 	  
 	  { "from": "I.4", "to": "III.1", "type": "uses" },
 	  { "from": "I.5", "to": "III.1", "type": "uses" },
