@@ -7,7 +7,7 @@ let currentTheme = "light";
 window.addEventListener("DOMContentLoaded", async () => {
   showLoader("Завантаження графа, зачекайте...");
 
-  data = await fetch("Euclid's_Elements_Graph.json").then(res => res.json());
+  data = await fetch("Euclids_Elements_Graph.json").then(res => res.json());
   setupTheme();
   drawGraph(data.nodes, data.edges);
   setupControls();
