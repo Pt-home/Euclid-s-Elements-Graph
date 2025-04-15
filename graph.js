@@ -5,19 +5,19 @@ let currentTheme = "light";
 
 // === ІНІЦІАЛІЗАЦІЯ ===
 window.addEventListener("DOMContentLoaded", async () => {
-  document.getElementById("loader").style.display = "block"; // показати
+  showLoader("Завантаження графа, зачекайте...");
 
-  data = await fetch("Euclids_Elements_Graph.json").then(res => res.json());
+  data = await fetch("Euclid's_Elements_Graph.json").then(res => res.json());
   setupTheme();
-  drawGraph(data.nodes);
+  drawGraph(data.nodes, data.edges);
   setupControls();
 
-  document.getElementById("loader").style.display = "none"; // сховати
+  hideLoader();
 });
 
 // === ПОБУДОВА ГРАФА ===
-function drawGraph(nodes) {
-  const edges = generateEdges(nodes); // тимчасово без реальних залежностей
+function drawGraph(nodes, edges) {
+  showLoader("Оновлення графа...");
 
   const visNodes = new vis.DataSet(nodes.map(n => ({
     id: n.id,
@@ -53,6 +53,7 @@ function drawGraph(nodes) {
   });
 
   updateStats(nodes, edges);
+  setTimeout(hideLoader, 300);
 }
 
 // === КОЛІР ЗА КНИГОЮ ===
@@ -65,19 +66,10 @@ function bookColor(book) {
   return palette[(book - 1) % palette.length];
 }
 
-// === ТИМЧАСОВЕ СТВОРЕННЯ ВИПАДКОВИХ EDGES ===
-function generateEdges(nodes) {
-  const edges = [];
-  for (let i = 1; i < nodes.length; i++) {
-    const from = nodes[Math.floor(Math.random() * i)].id;
-    edges.push({ from, to: nodes[i].id });
-  }
-  return edges;
-}
-
 // === КОНТРОЛІ ===
 function setupControls() {
   document.getElementById("fitViewBtn").onclick = () => network.fit();
+
   document.getElementById("togglePhysicsBtn").onclick = () => {
     physicsEnabled = !physicsEnabled;
     network.setOptions({ physics: { enabled: physicsEnabled } });
@@ -121,7 +113,7 @@ function setupControls() {
         break;
     }
 
-    drawGraph(filteredNodes);
+    drawGraph(filteredNodes, data.edges.filter(e => filteredNodes.find(n => n.id === e.from) && filteredNodes.find(n => n.id === e.to)));
   };
 
   document.getElementById("themeToggle").onclick = toggleTheme;
@@ -145,7 +137,6 @@ function updateStats(nodes, edges) {
     🔗 Зв'язків: ${stats.edges}
   `;
 
-  // Легенда
   const legendEl = document.getElementById("legend");
   legendEl.innerHTML = "";
   [...new Set(nodes.map(n => n.bookNumber))].sort((a, b) => a - b).forEach(book => {
@@ -167,4 +158,18 @@ function toggleTheme() {
   currentTheme = currentTheme === "light" ? "dark" : "light";
   document.body.classList.toggle("dark");
   localStorage.setItem("theme", currentTheme);
+}
+
+// === LOADER ===
+function showLoader(text) {
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.innerText = text;
+    loader.style.display = "block";
+  }
+}
+
+function hideLoader() {
+  const loader = document.getElementById("loader");
+  if (loader) loader.style.display = "none";
 }
