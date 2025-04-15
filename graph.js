@@ -5,7 +5,7 @@ let currentTheme = "light";
 
 // === ІНІЦІАЛІЗАЦІЯ ===
 window.addEventListener("DOMContentLoaded", async () => {
-  data = await fetch("Euclid's_Elements_Graph.json").then(res => res.json());
+  data = await fetch("Euclids_Elements_Graph.json").then(res => res.json());
   setupTheme();
   drawGraph(data.nodes);
   setupControls();
