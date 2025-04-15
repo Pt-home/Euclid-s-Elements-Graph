@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Граф тверджень Евкліда</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Граф тверджень Евкліда</h1>
+    <div class="controls">
+      <label for="graphMode">Режим:</label>
+      <select id="graphMode">
+        <option value="all">Весь граф</option>
+        <option value="by-book">По книгах</option>
+        <option value="planimetry">Планіметрія (I–IV)</option>
+        <option value="stereometry">Стереометрія (XI–XIII)</option>
+        <option value="ratios">Відношення/величини (V–X)</option>
+        <option value="plane+stereo">Планіметрія + Стереометрія</option>
+      </select>
+      <button id="fitViewBtn">Fit View</button>
+      <button id="togglePhysicsBtn">Toggle Physics</button>
+      <button id="exportBtn">Export PNG</button>
+      <button id="themeToggle">🌙/☀️</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="network"></div>
+    <div id="sidebar">
+      <section>
+        <h2>🔍 Деталі вузла</h2>
+        <div id="nodeDetails">Клікніть на вузол для перегляду</div>
+      </section>
+      <section>
+        <h2>📊 Статистика</h2>
+        <div id="graphStats"></div>
+      </section>
+      <section>
+        <h2>🎨 Легенда</h2>
+        <div id="legend"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 | Euclid's Elements Visualizer</p>
+  </footer>
+
+  <script src="graph.js"></script>
+</body>
+</html>
