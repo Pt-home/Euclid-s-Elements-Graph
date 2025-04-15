@@ -5,10 +5,14 @@ let currentTheme = "light";
 
 // === ІНІЦІАЛІЗАЦІЯ ===
 window.addEventListener("DOMContentLoaded", async () => {
-  data = await fetch("Euclids_Elements_Graph.json").then(res => res.json());
+  document.getElementById("loader").style.display = "block"; // показати
+
+  data = await fetch("Euclid's_Elements_Graph.json").then(res => res.json());
   setupTheme();
   drawGraph(data.nodes);
   setupControls();
+
+  document.getElementById("loader").style.display = "none"; // сховати
 });
 
 // === ПОБУДОВА ГРАФА ===
