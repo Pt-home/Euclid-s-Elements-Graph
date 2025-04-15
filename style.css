@@ -95,3 +95,18 @@ button, select {
 button:hover, select:hover {
   opacity: 0.85;
 }
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--sidebar-bg);
+  color: var(--text);
+  padding: 20px 30px;
+  font-size: 1.2rem;
+  border: 2px solid var(--highlight);
+  border-radius: 8px;
+  z-index: 1000;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
